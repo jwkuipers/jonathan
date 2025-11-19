@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jonathan Kuipers | IT Consultancy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="IT consultancy services by Jonathan Kuipers in Massachusetts. Expert in endpoint management, cloud, security, and modern workplace solutions." />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59,130,246,0.1);
+      --accent-strong: #2563eb;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148,163,184,0.3);
+      --card-bg: rgba(15,23,42,0.9);
+      --radius-xl: 18px;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.55);
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 3rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.75), transparent);
+      border-bottom: 1px solid rgba(148,163,184,0.15);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #93c5fd, #1d4ed8 50%, #020617 100%);
+      border: 1px solid rgba(148,163,184,0.5);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.95), 0 8px 22px rgba(15,23,42,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #e5efff;
+    }
+
+    .brand-text-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-text-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.87rem;
+    }
+
+    .nav-link {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      color: var(--text-muted);
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast), transform 0.1s ease-out;
+    }
+
+    .nav-link:hover {
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
+      border-color: rgba(148,163,184,0.4);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.primary {
+      background: linear-gradient(to right, var(--accent), var(--accent-strong));
+      color: #f9fafb;
+      border: 1px solid rgba(191,219,254,0.8);
+      box-shadow: 0 10px 30px rgba(37,99,235,0.45);
+      font-weight: 600;
+    }
+
+    .nav-link.primary:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 18px 45px rgba(37,99,235,0.7);
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.7fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding-top: 2.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.8rem 0.25rem 0.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.92);
+      box-shadow: 0 14px 40px rgba(15,23,42,0.85);
+      margin-bottom: 1.3rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pill-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 2px solid rgba(96,165,250,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 20%, #93c5fd, #1d4ed8 60%, #020617 100%);
+      box-shadow: 0 0 16px rgba(59,130,246,0.8);
+    }
+
+    .pill-dot-inner {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #eff6ff;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #93c5fd, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      background: radial-gradient(circle at top, rgba(148,163,184,0.3), rgba(15,23,42,0.95));
+      color: var(--text-muted);
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.7rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+      transition: background var(--transition-fast), border var(--transition-fast), transform 0.1s ease-out, box-shadow 0.1s ease-out;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--accent), var(--accent-strong));
+      color: #f9fafb;
+      border-color: rgba(191,219,254,0.9);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.6);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 45px rgba(37,99,235,0.85);
+      filter: brightness(1.05);
+    }
+
+    .btn-ghost {
+      border-color: rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.92);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,1);
+      border-color: rgba(148,163,184,0.75);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), rgba(15,23,42,0.98));
+      border-radius: 24px;
+      border: 1px solid rgba(148,163,184,0.65);
+      padding: 1.3rem 1.2rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-card-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-card-name {
+      font-weight: 600;
+    }
+
+    .hero-card-role {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .hero-card-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-card-location-badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: conic-gradient(from 160deg, #f97316, #facc15, #22c55e, #0ea5e9, #f97316);
+    }
+
+    .hero-card-status {
+      font-size: 0.8rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(22,163,74,0.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(74,222,128,0.5);
+    }
+
+    .hero-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-stat {
+      padding: 0.55rem 0.6rem;
+      border-radius: 16px;
+      background: rgba(15,23,42,0.94);
+      border: 1px solid rgba(148,163,184,0.6);
+    }
+
+    .hero-stat-label {
+      color: var(--text-muted);
+      font-size: 0.74rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-stat-value {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-bubbles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-bubble {
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.95);
+      color: var(--text-muted);
+    }
+
+    .hero-band {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed rgba(148,163,184,0.5);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-band-pill {
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.94);
+      border: 1px solid rgba(148,163,184,0.5);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-orbit-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.9);
+      box-shadow: 0 0 12px rgba(56,189,248,0.8);
+    }
+
+    .hero-orbit-dot:nth-child(1) { top: 6%; right: 8%; }
+    .hero-orbit-dot:nth-child(2) { bottom: 16%; left: 6%; width: 5px; height: 5px; background: rgba(129,140,248,0.9); }
+    .hero-orbit-dot:nth-child(3) { bottom: 2%; right: 18%; width: 7px; height: 7px; background: rgba(52,211,153,0.95); }
+
+    /* Sections */
+    section {
+      margin-top: 3.2rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 28rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.14s ease-out, box-shadow 0.14s ease-out, border 0.14s ease-out;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      transform: translate3d(0,10px,0);
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.95);
+      border-color: rgba(96,165,250,0.8);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+      transform: translate3d(0,0,0);
+    }
+
+    .card-kicker {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 0.1rem;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .card-list li {
+      padding-left: 0.8rem;
+      position: relative;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #60a5fa;
+      font-size: 0.9em;
+      top: 0.06rem;
+    }
+
+    /* Experience */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .timeline {
+      border-left: 1px dashed rgba(148,163,184,0.5);
+      padding-left: 1rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.2rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -1.12rem;
+      top: 0.28rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #1d4ed8;
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.28);
+    }
+
+    .timeline-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-body {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-box {
+      background: rgba(15,23,42,0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 0.85rem 0.9rem;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .highlight-box strong {
+      color: #e5e7eb;
+    }
+
+    .highlight-tags {
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .highlight-tag {
+      font-size: 0.76rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(30,64,175,0.35);
+      border: 1px solid rgba(129,140,248,0.7);
+      color: #e0f2fe;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.3fr);
+      gap: 1rem;
+    }
+
+    .contact-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-meta-list {
+      list-style: none;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-meta-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-meta-label {
+      color: #e5e7eb;
+      font-weight: 500;
+      margin-right: 0.25rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      font-size: 0.85rem;
+    }
+
+    .field label {
+      color: var(--text-muted);
+    }
+
+    .field input,
+    .field textarea {
+      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.96);
+      color: var(--text-main);
+      font: inherit;
+      resize: vertical;
+      min-height: 38px;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: 2px solid rgba(59,130,246,0.9);
+      border-color: transparent;
+      box-shadow: 0 0 0 2px rgba(15,23,42,0.9);
+    }
+
+    .helper-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .contact-status {
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+    }
+
+    .contact-status.error {
+      color: #fecaca;
+    }
+
+    .contact-status.success {
+      color: #bbf7d0;
+    }
+
+    footer {
+      margin-top: 3rem;
+      border-top: 1px solid rgba(148,163,184,0.3);
+      padding-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .experience-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        inset: 100% 0 auto 0;
+        background: rgba(15,23,42,0.98);
+        padding: 0.45rem 1.25rem 0.7rem;
+        border-bottom: 1px solid rgba(148,163,184,0.3);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      .nav-link {
+        padding-left: 0;
+      }
+
+      .nav-link.primary {
+        align-self: stretch;
+        justify-content: center;
+        margin-top: 0.2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .page {
+        padding-inline: 1rem;
+      }
+
+      .hero-card {
+        padding: 1rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-logo">JK</div>
+      <div>
+        <div class="brand-text-title">Jonathan Kuipers</div>
+        <div class="brand-text-sub">IT Consultancy · Massachusetts</div>
+      </div>
+    </div>
+
+    <div class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      ☰
+    </div>
+
+    <nav id="navMenu">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="#contact" class="nav-link primary">Book a Call</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div>
+      <div class="pill">
+        <div class="pill-dot">
+          <div class="pill-dot-inner"></div>
+        </div>
+        Modern IT, built around people — not tools.
+      </div>
+
+      <h1 class="hero-title">
+        IT Consultancy for
+        <span>Modern, Secure Workplaces</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        I’m <strong>Jonathan Kuipers</strong>, an IT consultant based in Massachusetts, helping teams
+        design, deploy, and manage reliable, secure environments across cloud and on-prem.
+      </p>
+
+      <div class="hero-badges">
+        <div class="badge">Endpoint Management &amp; Modern Workplace</div>
+        <div class="badge">Security-first Architecture</div>
+        <div class="badge">Advisory &amp; Hands-on Delivery</div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn btn-primary" data-scroll="#contact">
+          Schedule a consultation
+          <span class="btn-icon">→</span>
+        </button>
+        <button class="btn btn-ghost" data-scroll="#services">
+          View services
+        </button>
+      </div>
+
+      <div class="hero-meta">
+        <div><strong>Based in:</strong> Massachusetts, USA · Available for remote &amp; on-site engagements.</div>
+        <div><strong>Typical clients:</strong> growing SMBs, distributed teams, and tech-driven organizations.</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-left">
+            <div class="hero-card-name">Jonathan Kuipers</div>
+            <div class="hero-card-role">IT Consultant · Modern Workplace</div>
+            <div class="hero-card-location">
+              <div class="hero-card-location-badge"></div>
+              Massachusetts · Remote-friendly
+            </div>
+          </div>
+          <div class="hero-card-status">Accepting projects</div>
+        </div>
+
+        <div class="hero-card-grid">
+          <div class="hero-stat">
+            <div class="hero-stat-label">Experience</div>
+            <div class="hero-stat-value">20+ years</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Client size</div>
+            <div class="hero-stat-value">25–2,500 seats</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Focus</div>
+            <div class="hero-stat-value">Endpoint &amp; Cloud</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Engagement</div>
+            <div class="hero-stat-value">Project &amp; Retainer</div>
+          </div>
+        </div>
+
+        <div class="hero-bubbles">
+          <span class="hero-bubble">Microsoft 365 &amp; Intune</span>
+          <span class="hero-bubble">Endpoint Configuration (SCCM/MECM)</span>
+          <span class="hero-bubble">Zero-touch deployment</span>
+          <span class="hero-bubble">Security baselines</span>
+          <span class="hero-bubble">Automation &amp; scripting</span>
+        </div>
+
+        <div class="hero-band">
+          <div>Designing resilient environments so your team can work, not wrestle with IT.</div>
+          <div class="hero-band-pill">Available · Q1 &amp; Q2 bookings</div>
+        </div>
+
+        <div class="hero-orbit">
+          <div class="hero-orbit-dot"></div>
+          <div class="hero-orbit-dot"></div>
+          <div class="hero-orbit-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Services</h2>
+      </div>
+      <p class="section-subtitle">
+        Practical advisory and hands-on implementation to get your environment secure, manageable,
+        and ready for growth — without over-engineering.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <article class="card">
+        <div class="card-kicker">01 · Modern Workplace</div>
+        <h3 class="card-title">Endpoint Management &amp; Device Strategy</h3>
+        <p class="card-body">
+          Align devices, policies, and processes so laptops, desktops, and mobile devices “just work”
+          — securely and consistently.
+        </p>
+        <ul class="card-list">
+          <li>Intune / Endpoint Manager strategy &amp; rollout</li>
+          <li>Configuration Manager (SCCM/MECM) health &amp; tuning</li>
+          <li>Standard images, autopilot &amp; zero-touch deployment</li>
+          <li>Software distribution &amp; update compliance</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-kicker">02 · Security &amp; Compliance</div>
+        <h3 class="card-title">Secure-by-Default Foundations</h3>
+        <p class="card-body">
+          Reduce risk with sensible, enforceable policies that respect how your teams actually work.
+        </p>
+        <ul class="card-list">
+          <li>Security baselines &amp; hardening (Windows &amp; M365)</li>
+          <li>Conditional access &amp; identity-driven security</li>
+          <li>Endpoint protection &amp; vulnerability remediation</li>
+          <li>Audit-ready documentation &amp; best-practice alignment</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-kicker">03 · Cloud &amp; Hybrid</div>
+        <h3 class="card-title">Cloud-Ready Infrastructure</h3>
+        <p class="card-body">
+          Bridge on-prem, cloud, and remote work so your stack is flexible, not fragile.
+        </p>
+        <ul class="card-list">
+          <li>Hybrid AD / Entra ID planning &amp; clean-up</li>
+          <li>Migration roadmaps (on-prem → cloud services)</li>
+          <li>Licensing optimization &amp; cost-aware design</li>
+          <li>Operational runbooks &amp; knowledge transfer</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-kicker">04 · Automation</div>
+        <h3 class="card-title">Scripting &amp; Process Automation</h3>
+        <p class="card-body">
+          Replace repetitive manual work with reliable scripts, tooling, and guardrails.
+        </p>
+        <ul class="card-list">
+          <li>PowerShell automation for endpoint &amp; M365</li>
+          <li>Health checks, reporting &amp; dashboards</li>
+          <li>Joiner/mover/leaver workflows</li>
+          <li>Custom tooling for your IT team</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-kicker">05 · Fractional IT</div>
+        <h3 class="card-title">Fractional IT Leadership</h3>
+        <p class="card-body">
+          Get strategic guidance without committing to a full-time senior hire.
+        </p>
+        <ul class="card-list">
+          <li>Roadmaps, budgets &amp; prioritization</li>
+          <li>Vendor and tool selection</li>
+          <li>Process design &amp; documentation</li>
+          <li>Coaching for in-house IT teams</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-kicker">06 · Engagements</div>
+        <h3 class="card-title">How We Can Work Together</h3>
+        <p class="card-body">
+          Every engagement starts with a brief, no-pressure conversation about your environment and goals.
+        </p>
+        <ul class="card-list">
+          <li>Fixed-scope projects (audits, deployments, clean-ups)</li>
+          <li>Retainers for ongoing advisory &amp; escalations</li>
+          <li>Short-term “stabilize and hand-over” assignments</li>
+          <li>Collaboration with your existing vendors &amp; MSPs</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Approach &amp; Experience</h2>
+      </div>
+      <p class="section-subtitle">
+        Deep hands-on experience across on-prem, cloud, and hybrid environments, combined with a
+        practical, business-first mindset.
+      </p>
+    </div>
+
+    <div class="experience-grid">
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 class="timeline-title">From firefighting to reliable baselines</h3>
+          <div class="timeline-meta">Stabilizing environments, then building forward</div>
+          <p class="timeline-body">
+            Many clients start with recurring outages, inconsistent builds, or “shadow IT” devices.
+            I focus first on visibility and reliability — then help you move toward standardization,
+            automation, and secure defaults.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 class="timeline-title">Technical depth, human-centered delivery</h3>
+          <div class="timeline-meta">Communicating clearly with both IT and leadership</div>
+          <p class="timeline-body">
+            Good IT isn’t just about the right tools. It’s about clear trade-offs, aligned expectations,
+            and change management that respects how your teams actually work day-to-day.
+          </p>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-dot"></div>
+          <h3 class="timeline-title">Built for small and mid-sized organizations</h3>
+          <div class="timeline-meta">SMBs, growth-stage teams, and distributed workplaces</div>
+          <p class="timeline-body">
+            Whether you’re 25 or 2,500 users, the goal is the same: reduce friction, improve security,
+            and keep IT spend aligned with real business value.
+          </p>
+        </article>
+      </div>
+
+      <aside class="highlight-box">
+        <strong>What you can expect working together:</strong>
+        <ul class="card-list" style="margin-top:0.4rem;">
+          <li>Clear, jargon-free explanations of options and trade-offs.</li>
+          <li>Architecture and policies tailored to your actual risk profile.</li>
+          <li>Documentation your team can maintain, not a black box.</li>
+          <li>Honest advice — even when the best answer is “do less, but better.”</li>
+        </ul>
+
+        <div class="highlight-tags">
+          <span class="highlight-tag">Windows &amp; Endpoint</span>
+          <span class="highlight-tag">Intune / MECM</span>
+          <span class="highlight-tag">Microsoft 365</span>
+          <span class="highlight-tag">Security Baselines</span>
+          <span class="highlight-tag">Automation &amp; Scripting</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <p class="section-subtitle">
+        Share a bit about your environment and what you’re trying to achieve. I’ll respond with a
+        short, practical next step — usually a quick call or an initial assessment.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <p class="contact-note">
+          Located in <strong>Massachusetts, USA</strong>, working with clients across the US and
+          internationally. Remote engagements are welcome; on-site work is available where it adds
+          real value.
+        </p>
+
+        <ul class="contact-meta-list">
+          <li>
+            <span class="contact-meta-label">Name:</span>
+            Jonathan Kuipers
+          </li>
+          <li>
+            <span class="contact-meta-label">Location:</span>
+            Massachusetts, United States
+          </li>
+          <li>
+            <span class="contact-meta-label">Availability:</span>
+            Limited new client slots per quarter
+          </li>
+        </ul>
+
+        <p class="helper-text">
+          Prefer email or a calendar link? You can easily wire those into this page later — the form
+          below is a simple starting point.
+        </p>
+      </div>
+
+      <form class="contact-form" id="contactForm">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" placeholder="you@company.com" required />
+        </div>
+        <div class="field">
+          <label for="company">Company (optional)</label>
+          <input type="text" id="company" name="company" placeholder="Company / organization" />
+        </div>
+        <div class="field">
+          <label for="message">What would you like help with?</label>
+          <textarea id="message" name="message" rows="4" placeholder="Briefly describe your environment, challenges, and goals." required></textarea>
+        </div>
+        <div class="field">
+          <button type="submit" class="btn btn-primary">
+            Send message
+            <span class="btn-icon">↗</span>
+          </button>
+          <div id="contactStatus" class="contact-status"></div>
+        </div>
+        <p class="helper-text">
+          This demo form doesn’t send email yet — the button simulates a successful submission. You
+          can later hook it up to your preferred form or backend service.
+        </p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>© <span id="year"></span> Jonathan Kuipers · IT Consultancy · Massachusetts, USA</div>
+  <div class="footer-links">
+    <span class="footer-link" data-scroll="#top">Back to top ↑</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  navToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  // Smooth scroll for buttons & footer links
+  function smoothScrollTo(selector) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  document.querySelectorAll("[data-scroll]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      const selector = el.getAttribute("data-scroll");
+      smoothScrollTo(selector);
+      if (navMenu.classList.contains("open")) {
+        navMenu.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
+  // Contact form demo handler
+  const contactForm = document.getElementById("contactForm");
+  const contactStatus = document.getElementById("contactStatus");
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    contactStatus.textContent = "";
+    contactStatus.className = "contact-status";
+
+    const name = contactForm.name.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+
+    if (!name || !email || !message) {
+      contactStatus.textContent = "Please fill in all required fields.";
+      contactStatus.classList.add("error");
+      return;
+    }
+
+    // Simple email check
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      contactStatus.textContent = "Please enter a valid email address.";
+      contactStatus.classList.add("error");
+      return;
+    }
+
+    // Simulated success
+    contactStatus.textContent = "Thank you — your message has been recorded. You can now wire this form to your email or CRM.";
+    contactStatus.classList.add("success");
+    contactForm.reset();
+  });
+
+  // Footer year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
